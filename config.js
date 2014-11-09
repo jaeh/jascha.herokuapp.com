@@ -3,7 +3,7 @@
 module.exports = {
   defaults: {
       development: {
-        host: "http://jaeh.test:5000"
+        host: "http://jaeh:5000"
       , PORT: 5000
       }
     , production: {
