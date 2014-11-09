@@ -1,0 +1,244 @@
+@import reset
+
+body_color = #fefefe
+body_bg_color = #010101
+a_color = #999
+a_color_hover = #fff
+
+body
+  font-family monospace
+  font-size 20px
+  line-height 1.3em
+  max-width 700px
+  margin 0 auto
+  padding 0.5em 1em
+  background-color body_bg_color
+  color body_color
+
+a
+  color a_color
+  text-decoration none
+
+  &:hover
+    color a_color_hover
+
+h1, h2, h3, h4, h5
+  margin 1em 0 0
+
+h1 
+  font-size 1.5em
+  margin 1.5em 0 0.5em
+h2
+  font-size 1.4em
+  margin 1.5em 0 0.5em
+h3
+  font-size 1.3em
+h4
+  font-size 1.2em
+h5
+  font-size 1.1em
+
+p
+  margin 0.2em 0
+
+header.main
+  width 100%
+  margin 0 0 0.5em
+  display inline-block
+
+  img.image
+    width 30%
+    float left
+    margin 0 3% 0 0
+    max-width 100%;
+    border-radius 100%
+
+  h1,
+  div
+    float left
+    max-width 66%
+
+  h1
+    font-size 1.5em
+    margin 0.5em 0
+  div.jobTitle
+    font-size .9em
+    margin 0 0 0.5em
+  div.description
+    font-size .8em
+
+
+section.author
+  width 94%
+  margin 0 auto
+  max-width 1000px
+
+  div.affiliations
+    display inline-block
+
+    li
+      margin 1em 0
+      display inline-block
+
+      a
+        display inline-block
+        margin 0 3% 0 0
+        width 100%
+        &[itemprop="url"]
+          padding 0 10% 0 0
+
+      header
+        float left
+        width 15%
+        a
+          width 85%
+      .content
+        float left
+        width 84%
+        
+        h5
+          margin 0
+          width 100%
+
+      img
+        width 100%
+
+      div.description
+        display inline
+        font-size .8em
+
+  div.emails, div.social
+    margin 1em 0
+    float left
+
+  div.emails
+    width 35%
+
+    a
+      line-height 1.4
+
+  div.social
+    width 65%
+
+    header
+      display block
+      clear both
+      margin 0 0 0.1em
+
+    li
+      display inline
+
+      img
+        width 12%
+        margin 0 1%
+        opacity 0.8
+        &:hover
+          opacity 1
+
+footer.main
+  margin 1em 0
+
+@media (max-width: 800px)
+  body
+    font-size 18px
+  section.author
+    div.affiliations 
+      li 
+        header
+          width 17%
+        .content
+          width 82%
+
+@media (max-width: 600px)
+  body
+    font-size 16px
+  section.author
+    div.affiliations 
+      li 
+        header
+          width 19%
+        .content
+          width 80%
+
+@media (max-width: 500px)
+  body
+    font-size 15px
+
+  header.main
+    div.description
+      max-width 100%
+      margin 1em 0
+  section.author
+    div.email,
+    div.social
+      width 100%
+    div.affiliations 
+      li 
+        header
+          width 21%
+        .content
+          width 78%
+
+@media (max-width: 420px)
+  body
+    font-size 17px
+
+  section.author
+    div.social
+      max-width 100%
+      width 100%
+      margin 0 0 1em
+      clear both
+
+      div.affiliations 
+      li 
+        header
+          width 24%
+        .content
+          width 75%
+
+      header
+        margin 1em 0 0.1em
+    h2
+      display inherit
+      width 65%
+
+  header.main
+    text-align center
+
+    img.image, h1, div
+      max-width 100%
+      width 100%
+      text-align center
+      float none
+      clear both
+
+    nav
+      ul
+        li
+          display block
+          text-align center
+          margin 0 0 0.5em
+
+
+code, samp, kbd
+  font-family "Courier New", Courier, monospace, sans-serif
+  text-align left
+  color #bbb
+
+pre code 
+  line-height 1.6em
+  font-size 0.8em
+  
+pre 
+  padding 0.1em 0.5em 0.3em 0.7em
+  border-left 11px solid #ccc
+  margin 1.7em 0 1.7em 0.3em
+  overflow auto
+  width 93%
+
+
+.dirview
+  ul
+    ul
+      margin 0 1em

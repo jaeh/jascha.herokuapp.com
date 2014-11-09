@@ -1,0 +1,76 @@
+extends ../layout
+
+block content
+  section.author(itemprop='author' itemscope itemtype='http://schema.org/Person')
+    header.main
+      img.image(itemprop='image' src='/img/jascha.ehrenreich.png' alt='Jascha Ehrenreich')
+      h1.name(itemprop='name') Jascha Ehrenreich
+
+      div.jobTitle(itemprop='jobTitle') Webdeveloper and Streetartist
+
+      div.description(itemprop='description')
+        p i juggle with code since ten,
+        p with cones, balls and rings since twenty
+        p and life juggles with me since around thirty years.
+
+    div.affiliations(itemprop='affiliations')
+        ul
+          li(itemprop='affiliation' itemscope itemtype='http://schema.org/Organization')
+            header
+              a(href='https://bwb.is' target='bwb' itemprop='url')
+                img(src='/img/bwb.png' alt='Bitcoiners Without Borders')
+            .content
+              h5
+                a.legalName(href='https://bwb.is' target='bwb' itemprop='legalName') Bitcoiners Without Borders
+              div.description(itemprop='description') We are a tribe of individuals tired of the destructive trip, workin' on a better Day.
+
+          li(itemprop='affiliation' itemscope itemtype='http://schema.org/Organization')
+            header
+              a(href='https://metalab.at' target='utopia' itemprop='url')
+                img(src='/img/metalab.png' alt='metalab.at')
+
+            .content
+              h5
+                a(href='https://metalab.at' target='utopia' itemprop='legalName') Metalab
+              div.description(itemprop='description') The Metalab is a Hackspace in Vienna. I can usually be found in the Lounge.
+
+      div.socialnetworks(itemprop='socialnetworks')
+        div.emails
+          header(itemprop='contentType') Emails:
+          ul
+            li(itemprop='contactPoint')
+              a(itemprop='email' href='mailto://jascha@jaeh.at') jascha@jaeh.at
+
+            li(itemprop='contactPoint')
+              a(itemprop='email' href='mailto://jascha@bwb.is') jascha@bwb.is
+
+        div.social
+          header(itemprop='contentType') Social Networks:
+          ul
+            li(itemprop='contactPoint')
+              a(itemprop='url' target='_blank' href='https://github.com/jaeh')
+                img(src='/img/social/github.png' alt='home of the octocat' title='home of the octocat')
+
+            li(itemprop='contactPoint')
+              a(itemprop='url' target='_blank' href='https://github.com/jaeh')
+                img(src='/img/social/keybase.png' alt='keybase.io' title='my keybase.io profile')
+
+            li(itemprop='contactPoint')
+              a(itemprop='url' target='_blank' href='https://twitter.com/weirdpress')
+                img(src='/img/social/twitter.png' alt='twitter: @weirdpress' title='my twitter account')
+
+            li(itemprop='contactPoint')
+              a(itemprop='url' target='_blank' href='https://about.me/jascha.ehrenreich')
+                img(src='/img/social/aboutme.png' alt='about.me' title='my about.me page')
+
+            li(itemprop='contactPoint')
+              a(itemprop='url' target='_blank' href='https://suppe.jaeh.at')
+                img(src='/img/social/soup.png' alt='suppe. ja. eh.' title='soup (german: die suppe) is a social blogging network.')
+
+            li(itemprop='contactPoint')
+              a(itemprop='url' target='_blank' href='https://at.linkedin.com/in/jaschaehrenreich')
+                img(src='/img/social/linkedin.png' alt='linkedin' title='linkedin')
+
+            li(itemprop='contactPoint')
+              a(itemprop='url' target='_blank' href='https://facebook.com/jascha.ehrenreich')
+                img(src='/img/social/facebook.png' alt='facebook' title='it is the kraken.')

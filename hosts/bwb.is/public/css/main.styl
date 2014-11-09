@@ -1,0 +1,143 @@
+@import reset
+
+@font-face
+  font-family ubuntu
+  src url('/font/Ubuntu-R.woff')
+
+body
+  background-color #666
+  color white
+  font-size 18px
+  min-width 270px
+  margin 0
+  height 100%
+  width 100%
+  font-family ubuntu, sans-serif
+  text-align center
+
+h1
+  font-size 1.2em
+  margin 0 0 0.3em
+
+a
+  color #ff9d1c
+  text-decoration none
+
+  &:hover
+    color #bfbfbf
+
+#wrapper
+  background-color #666
+  display block
+  position relative
+  margin 1% 0px
+  width 100%
+  height 98%
+
+  #container
+    position relative
+    display inline-block
+
+    #logo img
+      margin 0 10px 0 0
+      height 2.4em
+      width auto
+      padding 0
+
+    #branding
+      display inline-block
+      vertical-align top
+
+    #tagline
+      font-size 0.8em
+      margin 0.4em 0 1em 3px
+      text-align left
+
+  .disclaimer
+    font-size 0.8em
+
+  video
+    margin 2% auto 1%
+    max-height 75%
+    max-width 100%
+    max-height 100%
+    width 90%
+    border-radius 6px
+
+a#busy
+  display block
+
+
+  span
+    display block
+    font-size 0.8em
+    margin 1em 0
+
+  img
+    max-width 240px
+    width 100%
+    text-align center
+
+  &:hover img
+    opacity 0.8em
+
+#keep-calm
+  height 511px
+  margin 2% auto 1%
+  border-radius 5px
+
+#mission
+  background-color #ff9d1c
+  border-radius 5px
+  width 500px
+  padding 1em
+
+  div
+    font-size 0.7em
+    margin 1em 0 0
+    text-align justify
+    line-height 1.3em
+
+
+  p
+    margin 2em 0 0
+
+
+  a
+    color #666
+
+    &:hover
+      color #fff
+
+@media screen and (max-width 900px)
+  body
+    font-size 17px
+
+@media screen and (max-width 800px)
+  body
+    font-size 16px
+
+@media screen and (max-width 700px)
+  body
+    font-size 15px
+    line-height 15px
+
+  #logo
+    height 2.5em
+
+@media screen and (max-width 600px)
+  body
+    font-size 14px
+    line-height 14px
+
+@media screen and (max-width 380px)
+  body
+    font-size 15px
+    line-height 12px
+
+  h1
+    margin 0.8em 0
+
+  .disclaimer div
+    width 200px
+    margin 0 auto

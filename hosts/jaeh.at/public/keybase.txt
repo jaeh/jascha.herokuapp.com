@@ -1,0 +1,76 @@
+==================================================================
+https://keybase.io/jascha
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of https://jaeh.at
+  * I am jascha (https://keybase.io/jascha) on keybase.
+  * I have a public key with fingerprint 4B31 9281 9DBB 5E24 3607  CB36 188C E5EC 577B 5544
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.7.2"
+        },
+        "key": {
+            "fingerprint": "4b3192819dbb5e243607cb36188ce5ec577b5544",
+            "host": "keybase.io",
+            "key_id": "188CE5EC577B5544",
+            "uid": "981316797245613b8ef15b242cc40100",
+            "username": "jascha"
+        },
+        "merkle_root": {
+            "ctime": 1412673436,
+            "hash": "2f6c0f708ac0456951f1cb262c6b23dbeb004893c5b319e8a3ceeaa11e1cc8e8954e437786e51613831c5a745d4f912183c2fdd892235cdaf851afa38b3ccc94",
+            "seqno": 73282
+        },
+        "service": {
+            "hostname": "jaeh.at",
+            "protocol": "https:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1412673463,
+    "expire_in": 157680000,
+    "prev": "9db0723825999c95e28982170c4cb125d3790031dc89d3890deb7027bc6f5bf1",
+    "seqno": 30,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG v1
+
+owFdkl1sFUUYhs+pghSCMQaTakysm5SmsTnMz87OzGkNYA+xIWgIemVqDjvfzp6z
+cNg97m6rTVMS9UIJoE16gRorCYgYYgRM9ARDTKnBG4kR/IuFYNQUkBu9wASqQWea
++jtXO7PP937fO+9MrLyl0FZsDFxN+u9K9hY//UkVHqdHW2OOSoJRpzzmQCPScW6/
+Yn+HdsrOdj2q/EyXoqQzTgJd2pZ1LjK9zohOsyiJDYVKvESc8V6L2+Iwims6baaR
+1XJcRbEkAstAKaaJSz3EQVEPCwGaaWCcK8Zc10jWkyz/T1dnQbMaBebU8AMb2IYB
+wz+0yA8v/JACU+xxyYnLPEyV0CFmirgEwEUYIQtmOl20tM3PoO7baXfodHtDV9Mk
+WbAMeWQB7GLicWrGNPP4Wd2UkNADFHIkfECmhWQ4xKCIR8BThAZKK4RcISkwa1UL
+n4LWvo+xxgBCC8lc7VLOhacZNhMKioH53GWBG0pMsKBAwiAQkhDKIPBDwbAf+lQo
+CgDSOs30U3HilDklgozbbToSgbZj2zv725qul3ybTTNN8gSShjms53kzK1u/+WjT
+Uk9rVV2sP1xVURyYtP4dJzbo/+7Co72OfqYZpboaWYJxTyCzbCM9YiMIFOKECsKk
+lCBNzEIKgjkCFxQmLKBcIkRxAEIGVEgUaMUR4Qq8kKkQ/+OQGtHcrxnNLKrFfj6c
+amd8V/HeWwvFtsLSJW32wRaWt9/x1ysOu5YVpuflK/te4u9XOqcme+AJ+O7VvnUf
+3KzciT6cOTX0wuaJb+6/MNR643c6/9uz+5ZlP56sxf0nt77TsXZ/Y3jq0eiX/fyB
+u1/88uqxrra+N9svNief6xzYct8B74cb3bfFew9OFg69Bufajx77/LHl9PSV1tr8
+cn/r+hfzD6/pOXj52yUfPTJDmgemL63fnXWNzF7vG5q9AOvObWm198q54uCVJwev
+PX869c4e6lj1/a6uszM7+8/f47/dh5u1qfMrejYddjaG8PGmwZd7tlY61r8bvLWi
++0xlFUyfcM4sXaPE7Ss3npoor1794LWbXx+f6z4xe2nnz5v3/HHkq7Ebuy8eqcx9
+9uvrxz/Z896f
+=qLMy
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/jascha
+
+==================================================================

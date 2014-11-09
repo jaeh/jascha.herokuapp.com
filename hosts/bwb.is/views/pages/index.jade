@@ -1,0 +1,15 @@
+extends ../layout
+
+block headerlink
+  h2#tagline
+    a(href="/keeping-calm") bwb.is/keeping-calm/
+
+block content
+  video#player(poster="/img/BWB-everybodysdreaming.jpg" controls="controls" loop="loop")
+    source(src="http://artificialeyes.tv/bwb/betterday-leemichaels.mp4" type="video/mp4")
+    source(src="http://artificialeyes.tv/bwb/betterday-leemichaels.ogg" type="video/ogg")
+    source(src="http://artificialeyes.tv/bwb/betterday-leemichaels.webm" type="video/webm")
+
+    div
+      The Html5 Video tag is not supported by your browser. Download the video
+      a(href="http://artificialeyes.tv/bwb/betterday-leemichaels.webm") here

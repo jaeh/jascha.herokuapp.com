@@ -1,0 +1,93 @@
+extends ../layout
+
+block content
+  section.about
+    header
+      h2 Hosts && Magic && A Wizard
+    p
+    | This page was built with the help of 
+    a(href='https://github.com/express-magic/express-magic') magic
+    
+    p
+      | What you see running here is a bunch of jade templates, hosted on 
+      a(href='https://heroku.com') heroku
+      | , content deliveried through 
+      a(href='https://cloudflare.com') cloudflare
+      | .
+
+    article
+      header
+        h4 Hosts:
+
+      p
+        | A host is a collection of templates, designed to be served together.
+        | One host is a completely independent express application and it can do
+        | anything express can do.
+        
+      p
+        | a host consists of 5 lines of javascript, because i like to be verbose:
+        pre
+          code.
+            'use strict';
+            var express = require('express')
+              , H = express()
+            ;
+            //custom functionality, 
+            //load express modules, use them, add routes etc.
+            module.exports = H;
+      p
+        | of course you can be less verbose too:
+        pre
+          code.
+            module.exports = require('express')();
+
+      p
+        | The rest of the magic is completely up to you,
+        | you can add any kind of express functionality in your hosts.
+
+
+    article
+      header
+        h4 Magic
+      
+      p
+        | in essence, Magic is an app mounter.
+
+      p
+        | it is designed not to be used. 
+        | it's goal is to magically take all those tedious tasks away from you
+        | that usually have to be done to get an express app running. 
+      p
+        | All you need to access Magic in your app is a main.js file:
+        pre
+          code.
+            require('express-magic')();
+
+    article
+      header
+        h4 Wizard
+      
+      p
+        | The wizard is there to help you add hosts, deploy, push to git and more.
+        | It is designed to be used as a command line interface,
+        | but will also be part of the admin package 
+        | which will provide full in page cms functionality.
+    
+
+    article
+      header
+        h4 Server
+      
+      p
+        | The 
+        a(href='https://github.com/express-magic/magic-server') magic-server
+        | repository helps you kickstart your development.
+        | Just add your custom content and deploy :)
+    
+    article
+      header
+        h4 jascha.herokuapp.com
+      
+      p
+        | The application powering this page can be found at 
+        a(href='https://github.com/jaeh/jascha.herokuapp.com') github
