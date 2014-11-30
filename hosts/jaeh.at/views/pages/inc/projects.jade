@@ -1,0 +1,109 @@
+.projects.list
+    header 
+      h4(
+        itemprop='contentType'
+      ) Projects:
+    .disclaimer
+      | Those are the projects that i either do for free (as in freedom and in beer)
+      | or that i would do for free if they could not pay.
+      | I 
+    ul
+      li(
+        itemprop='brand'
+        itemscope
+        itemtype='http://schema.org/Product'
+      )
+        header
+          h5
+            a(
+              href='http://magicshifter.net'
+              target='utopia'
+              itemprop='legalName'
+            ) MagicShifter - the Open Source Magic Lamp!
+
+        .content
+          a(
+            href='http://magicshifter.net'
+            target='utopia'
+            itemprop='url'
+          )
+            img(
+              itemprop='image' 
+              src='/img/magicshifter-logo.png' 
+              alt='magicshifter.net'
+            )
+
+          .description(
+            itemprop='description' 
+            itemscope itemtype='http://schema.org/Organisation'
+          ) 
+            | An open source hardware gadget for lighting, gaming, and POV applications.
+            | Charge and reprogram it over USB!
+            | Get one of the limited first batch
+            span(
+              itemprop='affiliate'
+            )
+              a(
+                itemprop='url'
+                target='hackerspaceshop'
+                href='http://www.hackerspaceshop.com/magicshifter.html' 
+              ) 
+                span(
+                  itemprop='legalName'
+                ) @hackerspaceshop
+            
+            |  The MagicShifter was created by my schnuckschnuck 
+            a.person(
+              itemprop='colleague' 
+              href='https://metalab.at/wiki/Benutzer:Wizard23' 
+              target='wizard23'
+            ) Philipp Tiefenbacher
+            
+            .testimonial 
+              | Every sufficiently advanced technology is indistinguishable from a MagicShifter
+              p.author Arthur C. Clarke, Proud Owner
+
+      li(itemprop='brand' itemscope itemtype='http://schema.org/Product')
+        header
+          h5
+            a(
+              itemprop='legalName' 
+              href='https://github.com/metalab/screeninvader' 
+              target='utopia'
+            ) Screeninvader
+
+        .content
+          a(
+            itemprop='url' 
+            href='https://github.com/metalab/screeninvader' 
+            target='utopia' 
+          )
+            img(
+              itemprop='image' 
+              src='/img/screeninvader-logo.png' 
+              alt='Screeninvader'
+            )
+
+          .description(
+            itemprop='description'
+          ) 
+            |  I am part of the team that develops the client side of the ScreenInvader:
+            | Ever wished you could play media content from your laptop or smart phone on a TV set, screen or projector in just an instant? This is what ScreenInvader helps you do: browse the web, watch videos or flip through images together with your friends on a big screen with just a few simple clicks. Most of the hard work was done by
+            span(
+              itemprop='colleague'
+            )
+              a.person(
+                itemscope='url' 
+                href='http://viel-zu.org' 
+                target='kallaballa'
+              ) 
+                span(
+                  itemprop='name'
+                ) Amir Hassan
+
+              | . Check out his 
+              a(
+                href='https://github.com/kallaballa?tab=repositories' 
+                target='kallaballa-github'
+              ) github
+              |  to see a heap of his ingeniously crazy projects.

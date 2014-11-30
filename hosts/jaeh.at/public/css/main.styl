@@ -1,19 +1,19 @@
 @import reset
 
-body_color = #fefefe
+font_color_main = #ccc
 body_bg_color = #010101
-a_color = #999
-a_color_hover = #fff
+a_color = #fff
+a_color_hover = #ddd
 
 body
+  background-color body_bg_color
+  color font_color_main
   font-family monospace
   font-size 20px
   line-height 1.3em
   max-width 700px
   margin 0 auto
   padding 0.5em 1em
-  background-color body_bg_color
-  color body_color
 
 a
   color a_color
@@ -42,16 +42,16 @@ p
   margin 0.2em 0
 
 header.main
-  width 100%
-  margin 0 0 0.5em
   display inline-block
+  margin 0 0 0.5em
+  width 100%
 
-  img.image
-    width 30%
+  img[itemprop=image]
+    border-radius 100%
     float left
     margin 0 3% 0 0
     max-width 100%;
-    border-radius 100%
+    width 30%
 
   h1,
   div
@@ -61,69 +61,74 @@ header.main
   h1
     font-size 1.5em
     margin 0.5em 0
+
   div.jobTitle
     font-size .9em
     margin 0 0 0.5em
-  div.description
-    font-size .8em
 
+div.description
+  font-size .8em
 
-section.author
-  width 94%
+section[itemprop=author]
   margin 0 auto
   max-width 1000px
+  width 94%
 
-  div.affiliations
+div.list
+  display inline-block
+
+  li
     display inline-block
+    margin 1em 0
 
-    li
-      margin 1em 0
-      display inline-block
+    h5
+      margin 0 0 0.5em
+      width 100%
 
       a
-        display inline-block
-        margin 0 3% 0 0
-        width 100%
-        &[itemprop="url"]
-          padding 0 10% 0 0
+        img
+          display inline
+          float left
+          margin 0 3% 0 0
 
-      header
-        float left
-        width 15%
-        a
-          width 85%
-      .content
-        float left
-        width 84%
-        
-        h5
-          margin 0
-          width 100%
-
+    .content
+      float left
+      
       img
-        width 100%
+        float left
+        margin 0 3% 0 0
+        max-height 400px
+        max-width 200px
 
-      div.description
-        display inline
-        font-size .8em
+    div[itemprop=description]
+      display inline
+      font-size .8em
 
-  div.emails, div.social
-    margin 1em 0
+div.social
+  li
+    margin 0 0 0.5em
+
+  div.emails, div.networks
     float left
+    margin 1em 0
 
-  div.emails
-    width 35%
+div.emails
+  width 35%
 
-    a
-      line-height 1.4
+  li
+    display block
 
-  div.social
-    width 65%
+  a
+    line-height 1.4
 
-    header
-      display block
-      clear both
-      margin 0 0 0.1em
+div.networks
+  text-align right
+  width 65%
+
+  header
+    clear both
+    display block
+    margin 0 0 0.1em
 
     li
       display inline
@@ -166,11 +171,11 @@ footer.main
 
   header.main
     div.description
-      max-width 100%
       margin 1em 0
+      max-width 100%
   section.author
     div.email,
-    div.social
+    div.networks
       width 100%
     div.affiliations 
       li 
@@ -184,11 +189,11 @@ footer.main
     font-size 17px
 
   section.author
-    div.social
+    div.networks
+      clear both
+      margin 0 0 1em
       max-width 100%
       width 100%
-      margin 0 0 1em
-      clear both
 
       div.affiliations 
       li 
@@ -203,38 +208,21 @@ footer.main
       display inherit
       width 65%
 
-  header.main
-    text-align center
-
-    img.image, h1, div
-      max-width 100%
-      width 100%
-      text-align center
-      float none
-      clear both
-
-    nav
-      ul
-        li
-          display block
-          text-align center
-          margin 0 0 0.5em
-
 
 code, samp, kbd
+  color #bbb
   font-family "Courier New", Courier, monospace, sans-serif
   text-align left
-  color #bbb
 
 pre code 
-  line-height 1.6em
   font-size 0.8em
+  line-height 1.6em
   
 pre 
-  padding 0.1em 0.5em 0.3em 0.7em
   border-left 11px solid #ccc
   margin 1.7em 0 1.7em 0.3em
   overflow auto
+  padding 0.1em 0.5em 0.3em 0.7em
   width 93%
 
 
@@ -242,3 +230,23 @@ pre
   ul
     ul
       margin 0 1em
+
+
+.testimonial
+  background-color #ff9d1c
+  border-radius 9px
+  box-shadow 2px 3px 10px #999
+  color #fff
+  font-size 0.8em
+  margin 1em auto
+  padding 0.5em
+  text-align center
+  width 80%
+
+  p
+    font-size 0.7em
+    font-style italic
+    text-align right
+    line-height 1.3em
+    margin 0
+    
