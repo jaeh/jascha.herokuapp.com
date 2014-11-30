@@ -8,7 +8,7 @@ module.exports = {
     , PORT: 5000
     , db: {
         driver: 'tingodb'
-      , database: path.join(__dirname, 'db')
+      , database: 'tingodb://' + path.join(__dirname, 'db')
       }
     }
   , production: {
@@ -16,7 +16,7 @@ module.exports = {
     , PORT: 5000
     , db: {
         driver: 'tingodb'
-      , database: path.join(__dirname, 'db')
+      , database: 'tingodb://' + path.join(__dirname, 'db')
       }
     }
   , staging: {
@@ -24,7 +24,7 @@ module.exports = {
     , PORT: 5000
     , db: {
         driver: 'tingodb'
-      , database: path.join(__dirname, 'db')
+      , database: 'tingodb://' + path.join(__dirname, 'db')
       }
     }
   }
