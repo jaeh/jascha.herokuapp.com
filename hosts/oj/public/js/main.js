@@ -108,8 +108,6 @@ document.body.className = document.body.className.replace('nojs', 'js');
     imgEle.src = image.src;
     imgEle.title = image.title;
     imgEle.id = image.id;
-    
-    
 
     imgTitle.innerHTML = image.title;
 
@@ -203,6 +201,29 @@ document.body.className = document.body.className.replace('nojs', 'js');
     return images.length;
   }
 
+  function resizeImages() {
+    var gallery = addGallery();
+    var images = gallery.getElementsByTagName('img');
+
+    for ( var k in images ) {
+      if ( images.hasOwnProperty(k) ) {
+        var image = images[k];
+        if ( image.style ) {
+          var height = window.innerHeight;
+          console.log('image', image);
+          image.style.maxHeight = (height - 150) + 'px';
+          image.style.width = 'auto';
+          image.style.maxWidth = '100%';
+        }
+      }
+    }
+  }
+
+  window.addEventListener('resize', function () {
+    resizeImages();
+  });
+
+
   window.addEventListener('hashchange', hashChange, false);  
 })();
 
@@ -265,4 +286,12 @@ document.body.className = document.body.className.replace('nojs', 'js');
     buttonContainer.appendChild(button);
     menuUl.appendChild(buttonContainer);
   }
+})();
+
+/*
+ * Control maximum image sizing 
+*/
+
+(function () {
+  
 })();
