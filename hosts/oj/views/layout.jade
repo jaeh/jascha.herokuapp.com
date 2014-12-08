@@ -12,14 +12,13 @@ html(lang="en")
   block body
     body.nojs
       header.main
-
         block header
           nav#menu
             ul
               li
                 a(href='/') oliver jiszda
               li
-                a(href='/') work
+                a(href='/work') work
               li
                 a(href='/about') about
               li
@@ -30,3 +29,4 @@ html(lang="en")
           div empty body content
 
       block scripts
+        script(src='/js/main.js')
