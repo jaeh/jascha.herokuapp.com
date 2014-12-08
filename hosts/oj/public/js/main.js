@@ -137,7 +137,6 @@ document.body.className = document.body.className.replace('nojs', 'js');
   }
 
   function hashChange() {
-    console.log('hashChange', location.hash);
     showImage(location.hash.replace('#image-', ''));
   }
 
@@ -158,7 +157,6 @@ document.body.className = document.body.className.replace('nojs', 'js');
   }
 
   function loadNextImage() {
-    console.log('loadNextImage');
     var hashId = getHashId();
     if ( hashId < countImages() ) {
       hashId += 1;
@@ -169,7 +167,6 @@ document.body.className = document.body.className.replace('nojs', 'js');
   }
 
   function loadPreviousImage() {
-    console.log('loadPreviousImage');
     var hashId = getHashId();
     if ( hashId > 1 ) {
       hashId -= 1;
@@ -210,7 +207,6 @@ document.body.className = document.body.className.replace('nojs', 'js');
         var image = images[k];
         if ( image.style ) {
           var height = window.innerHeight;
-          console.log('image', image);
           image.style.maxHeight = (height - 150) + 'px';
           image.style.width = 'auto';
           image.style.maxWidth = '100%';
@@ -239,7 +235,6 @@ document.body.className = document.body.className.replace('nojs', 'js');
   var buttonContainer = document.createElement('li');
   var button = document.createElement('a');
   var currentTimeOfDay = localStorage.bodyClass || 'day';
-  //~ console.log('currentTimeOfDay', currentTimeOfDay);
 
   button.className = currentTimeOfDay === 'day' ? 'day' : 'night';
   button.innerHTML = currentTimeOfDay === 'day' ? 'night' : 'day';
@@ -247,7 +242,6 @@ document.body.className = document.body.className.replace('nojs', 'js');
   menuUl.appendChild(buttonContainer);
 
   button.addEventListener('click', function (evt) {
-    //~ console.log('btn clicked', evt.target);
     var className = evt.target.className || 'night';
     var newClass = 'day';
     if ( className === 'day' ) {
