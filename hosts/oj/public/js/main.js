@@ -274,7 +274,7 @@ document.body.className = document.body.className.replace('nojs', 'js');
 */
 (function () {
   'use strict';
-  var elem = document.body;
+  var elem = document.body
   elem.requestFullscreen = elem.requestFullscreen 
                         || elem.msRequestFullscreen
                         || elem.mozRequestFullScreen
@@ -286,11 +286,34 @@ document.body.className = document.body.className.replace('nojs', 'js');
   if ( typeof elem.requestFullscreen === 'function' ) {
     var menuUl = document.getElementById('menu').getElementsByTagName('ul')[0];
     var buttonContainer = document.createElement('li');
+    buttonContainer.id = 'fullscreen-container';
     var button = document.createElement('a');
     button.id = 'fullscreen';
     button.innerHTML = 'fullscreen';
     button.addEventListener('click', function () {
-      elem.requestFullscreen();
+      var d = document
+        , isFullscreen = d.fullscreen
+                      || d.mozFullScreen
+                      || d.webkitIsFullScreen
+                      || d.msFullscreenElement
+                      || false
+      ;
+      console.log('isFullscreen', isFullscreen);
+
+      document.cancelFullscreen = d.cancelFullScreen
+                               || d.exitFullscreen
+                               || d.mozCancelFullScreen
+                               || d.webkitCancelFullScreen
+                               || d.msExitFullscreen
+                               || false
+      ;
+
+      if ( ! isFullscreen ) {
+        elem.requestFullscreen();
+      } else {
+        document.cancelFullscreen();
+      }
+    
     });
 
     buttonContainer.appendChild(button);
