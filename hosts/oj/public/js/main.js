@@ -239,7 +239,7 @@ document.body.className = document.body.className.replace('nojs', 'js');
 })();
 
 /*
- * renders and adds event listeners for the fullscreen button
+ * rendering and adds event listeners for the day/night button
 */
 (function addDayNightUi () {
   'use strict';
@@ -270,7 +270,7 @@ document.body.className = document.body.className.replace('nojs', 'js');
 
 
 /*
- * renders and adds event listeners for the fullscreen button
+ * rendering and adds event listeners for the fullscreen button
 */
 (function () {
   'use strict';
