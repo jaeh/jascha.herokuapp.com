@@ -13,7 +13,6 @@ body_bg_color = #fefefe
 a_color = #444
 a_color_hover = #999
 
-
 body_font_color_night = #fefefe
 body_bg_color_night = #111
 a_color_night = #aaa
@@ -25,12 +24,14 @@ html, body
 body
   background-color body_bg_color
   color body_font_color
-  width 90%
-  overflow hidden
   margin 0 auto
+  max-width 1100px
+  overflow hidden
+  position fixed
   text-align center
   transition(background-color 0.5s);
-  
+  width 90%
+
   &.night
     background-color body_bg_color_night
     color body_font_color_night
@@ -91,28 +92,59 @@ a
 noscript#image-gallery, div#gallery
   display inline-block
   max-height 90%
-  overflow hidden
   width 100%
 
   img
-    //border 1em solid #444
     box-sizing border-box
     max-width 1200px
     width 100%
 
-
 #gallery-container
   li
+    height 0
     opacity 0
-    transition(opacity 0.5s)
-    display none
+    transition(1s)
+    width 0
+
+    h2
+      opacity 0
 
     &.displayed
+      height auto
+      width auto
       opacity 1
-      display block
-  
+      transition(1s)
+      h2
+        opacity 1
+
     h2
       margin 1.5em 0 0
+
+
+form
+  max-width 800px
+  margin 0 auto
+  input, textarea
+    color body_font_color
+    background-color darken(body_bg_color, 20%)
+    border 2px solid lighten(body_bg_color_night, 40%)
+    border-radius 2px
+    display block
+    width 100%
+    margin 1em 0
+    padding 1em
+    box-sizing border-box
+
+  textarea
+    height 150px
+
+body.night
+  form
+    input, textarea
+      color body_font_color_night
+      background-color lighten(body_bg_color_night, 40%)
+      border 2px solid darken(body_bg_color, 20%)
+
 
 @media (max-width: 400px)
   body

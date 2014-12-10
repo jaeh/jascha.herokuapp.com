@@ -1,7 +1,6 @@
 //first tell the body that we have javascript support as early as possible
 document.body.className = document.body.className.replace('nojs', 'js');
 
-
 /*
  * renders the image gallery,
  * adds image gallery navigation by clicking left/right half of the image
@@ -20,9 +19,10 @@ document.body.className = document.body.className.replace('nojs', 'js');
     document.location.hash = document.location.hash || '#image-1';
 
     var imgEle = loadFirstImage();
-    if ( imgEle && typeof imgEle.className === 'string' ) {
-      imgEle.className = 'displayed';
-    }
+    //~ if ( imgEle && typeof imgEle.className === 'string' ) {
+      //~ imgEle.className = 'displayed';
+    //~ }
+    resizeImages();
   }
 
 
@@ -30,7 +30,7 @@ document.body.className = document.body.className.replace('nojs', 'js');
     if ( document.getElementById('gallery-container') ) {
       return document.getElementById('gallery-container');
     }
-    
+
     var contentEle = document.getElementById('content');
     var galleryEle = document.createElement('div');
     var galleryContainerEle = document.createElement('ul');
@@ -48,14 +48,19 @@ document.body.className = document.body.className.replace('nojs', 'js');
     var imageGalleryEle = document.getElementById('image-gallery');
     var imageHTML = imageGalleryEle.innerHTML;
     var imageTags = imageHTML.split('&lt;img');
+    if ( imageHTML.indexOf('<img') >= 0 ) {
+      imageTags = imageHTML.split('<img');
+    }
+    console.log('imageTags', imageTags);
 
     var imgs = [];
     for (var i = 0; i < imageTags.length; i++ ) {
       var img = parseImgTag(imageTags[i]);
       if ( img ) {
-        imgs.push( parseImgTag(imageTags[i]) );
+        imgs.push( img );
       }
     }
+    console.log('imgs', imgs);
     return imgs;
   }
 
@@ -64,8 +69,9 @@ document.body.className = document.body.className.replace('nojs', 'js');
     var title = img.split('title="')[1] || '';
     var id = img.split('id="')[1] || '';
 
-    if ( src ) {
+    console.log('img', img);
 
+    if ( src ) {
       var image = {
           id    : id.split('"')[0]
         , src: src.split('"')[0]
@@ -81,7 +87,7 @@ document.body.className = document.body.className.replace('nojs', 'js');
       addImageEle(image);
     });
   }
-  
+
   function getHashId() {
      return parseInt(location.hash.replace('#image-', '') );
   }
@@ -124,11 +130,13 @@ document.body.className = document.body.className.replace('nojs', 'js');
     } else {
       gallery.appendChild(imgContainer);
     }
-    
+
     imgEle.addEventListener('click', imageClick, false);
+    resizeImage(imgEle);
 
     if ( addEvent && images ) {
       imgEle.addEventListener('load', function () {
+        imgEle.parentNode.className = 'displayed';
         loadImages(images);
       });
     }
@@ -158,12 +166,17 @@ document.body.className = document.body.className.replace('nojs', 'js');
 
   function loadNextImage() {
     var hashId = getHashId();
-    if ( hashId < countImages() ) {
+    var imageCount = countImages();
+    console.log('hashId', hashId, 'imageCount', imageCount);
+    
+    if ( hashId < imageCount ) {
       hashId += 1;
+      console.log('increment hashId');
     } else {
       hashId = 1;
     }
     location.hash = '#image-' + hashId;
+    console.log('location.hash', location.hash);
   }
 
   function loadPreviousImage() {
@@ -178,14 +191,14 @@ document.body.className = document.body.className.replace('nojs', 'js');
 
   function imageClick(evt) {
     var offsetLeft = evt.target.offsetLeft;
-    var x = evt.x;
+    var x = evt.x || evt.screenX;
     var center = ( evt.target.width / 2 ) + offsetLeft;
-    if ( evt.x > center ) {
+    if ( x > center ) {
       loadNextImage();
     } else {
       loadPreviousImage();
     }
-  }
+}
 
   function getImages() {
     var gallery = document.getElementById('gallery-container');
@@ -204,14 +217,17 @@ document.body.className = document.body.className.replace('nojs', 'js');
 
     for ( var k in images ) {
       if ( images.hasOwnProperty(k) ) {
-        var image = images[k];
-        if ( image.style ) {
-          var height = window.innerHeight;
-          image.style.maxHeight = (height - 150) + 'px';
-          image.style.width = 'auto';
-          image.style.maxWidth = '100%';
-        }
+        resizeImage(images[k]);
       }
+    }
+  }
+
+  function resizeImage(image) {
+    if ( image.style ) {
+      var height = window.innerHeight;
+      image.style.maxHeight = (height - 150) + 'px';
+      image.style.width = 'auto';
+      image.style.maxWidth = '100%';
     }
   }
 
@@ -219,17 +235,15 @@ document.body.className = document.body.className.replace('nojs', 'js');
     resizeImages();
   });
 
-
   window.addEventListener('hashchange', hashChange, false);  
 })();
-
-
-
 
 /*
  * renders and adds event listeners for the fullscreen button
 */
 (function addDayNightUi () {
+  'use strict';
+
   //day/night button
   var menuUl = document.getElementById('menu').getElementsByTagName('ul')[0];
   var buttonContainer = document.createElement('li');
@@ -259,6 +273,7 @@ document.body.className = document.body.className.replace('nojs', 'js');
  * renders and adds event listeners for the fullscreen button
 */
 (function () {
+  'use strict';
   var elem = document.body;
   elem.requestFullscreen = elem.requestFullscreen 
                         || elem.msRequestFullscreen
@@ -266,6 +281,7 @@ document.body.className = document.body.className.replace('nojs', 'js');
                         || elem.webkitRequestFullScreen
                         || false
   ;
+
   //only load if requestFullscreen exists
   if ( typeof elem.requestFullscreen === 'function' ) {
     var menuUl = document.getElementById('menu').getElementsByTagName('ul')[0];
@@ -280,12 +296,4 @@ document.body.className = document.body.className.replace('nojs', 'js');
     buttonContainer.appendChild(button);
     menuUl.appendChild(buttonContainer);
   }
-})();
-
-/*
- * Control maximum image sizing 
-*/
-
-(function () {
-  
 })();
