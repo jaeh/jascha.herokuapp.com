@@ -9,6 +9,7 @@
     "express": "^4.9.8",
     "express-magic": "git+https://github.com/express-magic/express-magic#master",
     "jade": "^1.7.0",
+    "magic-mail": "git://github.com/express-magic/magic-mail",
     "magic-wizard": "git+https://github.com/express-magic/magic-wizard#master"
   },
   "repository": {
