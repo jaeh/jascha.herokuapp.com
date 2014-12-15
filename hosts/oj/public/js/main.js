@@ -171,7 +171,6 @@ document.body.className = document.body.className.replace('nojs', 'js');
     
     if ( hashId < imageCount ) {
       hashId += 1;
-      console.log('increment hashId');
     } else {
       hashId = 1;
     }
@@ -212,12 +211,16 @@ document.body.className = document.body.className.replace('nojs', 'js');
   }
 
   function resizeImages() {
-    var gallery = addGallery();
-    var images = gallery.getElementsByTagName('img');
+    var imageGallery = document.getElementById('image-gallery');
+    
+    if (imageGallery && imageGallery.innerHTML ) {
+      var gallery = addGallery();
+      var images = gallery.getElementsByTagName('img');
 
-    for ( var k in images ) {
-      if ( images.hasOwnProperty(k) ) {
-        resizeImage(images[k]);
+      for ( var k in images ) {
+        if ( images.hasOwnProperty(k) ) {
+          resizeImage(images[k]);
+        }
       }
     }
   }
@@ -289,7 +292,8 @@ document.body.className = document.body.className.replace('nojs', 'js');
     buttonContainer.id = 'fullscreen-container';
     var button = document.createElement('a');
     button.id = 'fullscreen';
-    button.innerHTML = 'fullscreen';
+    button.classList.add('icon-enlarge');
+    //~ button.innerHTML = 'fullscreen';
     button.addEventListener('click', function () {
       var d = document
         , isFullscreen = d.fullscreen
@@ -298,7 +302,6 @@ document.body.className = document.body.className.replace('nojs', 'js');
                       || d.msFullscreenElement
                       || false
       ;
-      console.log('isFullscreen', isFullscreen);
 
       document.cancelFullscreen = d.cancelFullScreen
                                || d.exitFullscreen
@@ -310,8 +313,12 @@ document.body.className = document.body.className.replace('nojs', 'js');
 
       if ( ! isFullscreen ) {
         elem.requestFullscreen();
+        button.classList.add('icon-contract');
+        button.classList.remove('icon-enlarge');
       } else {
         document.cancelFullscreen();
+        button.classList.add('icon-enlarge');
+        button.classList.remove('icon-contract');
       }
     
     });

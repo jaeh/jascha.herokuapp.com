@@ -98,8 +98,9 @@ a
 #content
   display inline-block
   max-height 90%
-  overflow hidden
-  width 100%
+  width auto
+  position relative
+  min-width 80%
 
 noscript#image-gallery, div#gallery
   display inline-block
@@ -115,19 +116,21 @@ noscript#image-gallery, div#gallery
   li
     height 0
     opacity 0
-    transition(1s)
+    transition(opacity 1s)
     width 0
+    display inline-block
 
     &.displayed
       height auto
       width auto
       opacity 1
-      transition(1s)
+      transition(opacity 1s)
       h2
         opacity 1
 
     h2
       opacity 0
+      height 1.2em
 
 form
   max-width 800px
@@ -153,6 +156,59 @@ body.night
       background-color lighten(body_bg_color_night, 40%)
       border 2px solid darken(body_bg_color, 20%)
 
+.error
+  color #f00
+
 @media (max-width: 400px)
   body
     width 95%
+
+@font-face
+  font-family 'icomoon'
+  src url('/font/icomoon.eot')
+  src url('/font/icomoon.eot') format('embedded-opentype'),
+    url('/font/icomoon.woff') format('woff'),
+    url('/font/icomoon.ttf') format('truetype'),
+    url('/font/icomoon.svg') format('svg')
+  font-weight normal
+  font-style normal
+
+
+[class^="icon-"], [class*=" icon-"], #gallery-container
+  font-family 'icomoon'
+  speak none
+  font-style normal
+  font-weight normal
+  font-variant normal
+  text-transform none
+  line-height 1
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing antialiased
+  -moz-osx-font-smoothing grayscale
+
+.icon-caret-right:before, #gallery-container:after
+  content "\e603"
+
+.icon-caret-left:before, #gallery-container:before
+  content "\e606"
+
+.icon-contract:before
+  content "\e601"
+
+.icon-enlarge:before
+  content "\e600"
+
+#gallery-container:before,
+#gallery-container:after
+  position absolute
+  top 42.5%
+  font-size 2em
+  z-index 1
+
+#gallery-container:before
+  content "\e606"
+  left -4%
+
+#gallery-container:after 
+  content "\e603"
+  right -4%
