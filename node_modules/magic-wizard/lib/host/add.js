@@ -78,7 +78,7 @@ function prepareGitCommitPrompt(args, cb) {
 
 git.commit = function (args, cb) {
   if ( ! args.confirmCommit ) {
-    log('git commit stopped by user');
+    log.warn('git commit stopped by user');
     return cb(null, args);
   }
   var cmd = 'git commit -m "Wizard added host: ' + args.hostname + '"';
@@ -105,13 +105,13 @@ git.push = function (args, cb) {
 function gitCb(err, args) {
   var std = args.std;
 
-  if (err) { log('error = ' + err, 'error'); }
+  if (err) { log.error(err); }
     
   if (std.stderr) {
     if ( std.stderr.indexOf('Cloning into') === 0 ) {
-      log(std.stderr, 'success');
+      log.success(std.stderr);
     } else {
-      log(std.stderr, 'error')
+      log.error(std.stderr);
     }
   }
   if (std.stdout) { log(std.stdout); }

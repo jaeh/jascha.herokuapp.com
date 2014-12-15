@@ -45,7 +45,7 @@ cli.chooseHostAction = function () {
         host.add(function (err, results) {
 
           log('host added.');
-          if (err) { log(err, 'error'); }
+          if (err) { log.error(err); }
           log(results);
         });
 
@@ -58,11 +58,11 @@ cli.chooseHostAction = function () {
         log(args.action);
         host.deploy(function (err, results) {
           log('deploy done.');
-          if (err) { log(err, 'error'); }
+          if (err) { log.error(err); }
           log(results);
         });
       } else {
-        log('Wizard Error: Action: ' + args.action + ' not found');
+        log.error('Wizard Error: Action: ', args.action, ' not found');
       }
     });
 }
