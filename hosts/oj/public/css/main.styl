@@ -55,13 +55,11 @@ body.nojs
     #image-gallery
       display inline-block
       height auto
-      max-height inherit
       width 100%
 
       img
         float none
         margin 1em 0 0
-        max-height inherit
         max-width 100%
         width 100%
 
@@ -112,11 +110,19 @@ noscript#image-gallery, div#gallery
     max-width 1200px
     width 100%
 
+#menu-container
+  position absolute
+  left 1em
+  top 1em
+
+  li
+    display inline
+
 #gallery-container
   li
     height 0
     opacity 0
-    transition(opacity 1s)
+    transition(2s)
     width 0
     display inline-block
 
@@ -124,7 +130,7 @@ noscript#image-gallery, div#gallery
       height auto
       width auto
       opacity 1
-      transition(opacity 1s)
+      transition(2s)
       h2
         opacity 1
 
@@ -186,17 +192,21 @@ body.night
   -webkit-font-smoothing antialiased
   -moz-osx-font-smoothing grayscale
 
-.icon-caret-right:before, #gallery-container:after
-  content "\e603"
 
-.icon-caret-left:before, #gallery-container:before
-  content "\e606"
+.icon-expand:before
+  content: "\f065"
 
-.icon-contract:before
-  content "\e601"
+.icon-compress:before
+  content: "\f066"
 
-.icon-enlarge:before
-  content "\e600"
+.icon-caret-right:before
+  content: "\e603"
+
+.icon-caret-left:before
+  content: "\e606"
+
+.icon-lamp:before
+  content "\e602"
 
 #gallery-container:before,
 #gallery-container:after

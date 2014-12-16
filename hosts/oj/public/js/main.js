@@ -237,39 +237,41 @@ document.body.className = document.body.className.replace('nojs', 'js');
   window.addEventListener('resize', function () {
     resizeImages();
   });
+  
+  document.addEventListener('webkitfullscreenchange', fullscreenChange);
+  document.addEventListener('mozfullscreenchange', fullscreenChange);
+  document.addEventListener('fullscreenchange', fullscreenChange);
+  document.addEventListener('MSFullscreenChange', fullscreenChange);
+  
+  function fullscreenChange() {
+    var d = document
+      , isFullscreen = d.fullscreen
+                      || d.mozFullScreen
+                      || d.webkitIsFullScreen
+                      || d.msFullscreenElement
+                      || false
+    ;
+
+    if ( ! isFullscreen ) {
+      var fullscreenEle = document.getElementById('fullscreen');
+      fullscreenEle.classList.add('icon-enlarge');
+      fullscreenEle.classList.remove('icon-contract');
+    }
+  }
 
   window.addEventListener('hashchange', hashChange, false);  
 })();
 
-/*
- * rendering and adds event listeners for the day/night button
-*/
-(function addDayNightUi () {
-  'use strict';
+function getMenuContainer() {
+  var menuContainer = document.getElementById('menu-container');
+  if ( ! menuContainer ) {
+    menuContainer = document.createElement('ul');
+    menuContainer.id = 'menu-container';
+    document.body.appendChild(menuContainer);
+  }
 
-  //day/night button
-  var menuUl = document.getElementById('menu').getElementsByTagName('ul')[0];
-  var buttonContainer = document.createElement('li');
-  var button = document.createElement('a');
-  var currentTimeOfDay = localStorage.bodyClass || 'day';
-
-  button.className = currentTimeOfDay === 'day' ? 'day' : 'night';
-  button.innerHTML = currentTimeOfDay === 'day' ? 'night' : 'day';
-  buttonContainer.appendChild(button);
-  menuUl.appendChild(buttonContainer);
-
-  button.addEventListener('click', function (evt) {
-    var className = evt.target.className || 'night';
-    var newClass = 'day';
-    if ( className === 'day' ) {
-      newClass = 'night';
-    }
-    localStorage.bodyClass = newClass;
-    evt.target.innerHTML = evt.target.innerHTML.replace(newClass, className);
-    evt.target.className = evt.target.className.replace(className, newClass);
-    document.body.className = document.body.className.replace(className, newClass);
-  });
-})();
+  return menuContainer;
+}
 
 
 /*
@@ -277,7 +279,9 @@ document.body.className = document.body.className.replace('nojs', 'js');
 */
 (function () {
   'use strict';
-  var elem = document.body
+  var menuContainer = getMenuContainer()
+    , elem = document.body
+  ;
   elem.requestFullscreen = elem.requestFullscreen 
                         || elem.msRequestFullscreen
                         || elem.mozRequestFullScreen
@@ -292,7 +296,7 @@ document.body.className = document.body.className.replace('nojs', 'js');
     buttonContainer.id = 'fullscreen-container';
     var button = document.createElement('a');
     button.id = 'fullscreen';
-    button.classList.add('icon-enlarge');
+    button.classList.add('icon-expand');
     //~ button.innerHTML = 'fullscreen';
     button.addEventListener('click', function () {
       var d = document
@@ -313,17 +317,53 @@ document.body.className = document.body.className.replace('nojs', 'js');
 
       if ( ! isFullscreen ) {
         elem.requestFullscreen();
-        button.classList.add('icon-contract');
-        button.classList.remove('icon-enlarge');
+        button.classList.add('icon-compress');
+        button.classList.remove('icon-expand');
       } else {
         document.cancelFullscreen();
-        button.classList.add('icon-enlarge');
-        button.classList.remove('icon-contract');
+        button.classList.add('icon-expand');
+        button.classList.remove('icon-compress');
       }
     
     });
 
     buttonContainer.appendChild(button);
-    menuUl.appendChild(buttonContainer);
+    menuContainer.appendChild(buttonContainer);
+    //~ menuUl.appendChild(buttonContainer);
   }
+})();
+
+/*
+ * rendering and adds event listeners for the day/night button
+*/
+(function addDayNightUi () {
+  'use strict';
+
+  var menuContainer = getMenuContainer();
+  //day/night button
+  var menuUl = document.getElementById('menu').getElementsByTagName('ul')[0];
+  var buttonContainer = document.createElement('li');
+  buttonContainer.id = 'daynight-container';
+  var button = document.createElement('a');
+  var currentTimeOfDay = localStorage.bodyClass || 'day';
+  button.setAttribute('data-time', currentTimeOfDay);
+
+  button.classList.add(currentTimeOfDay === 'day' ? 'day' : 'night');
+  button.classList.add('icon-lamp');
+  //~ button.innerHTML = currentTimeOfDay === 'day' ? 'night' : 'day';
+  buttonContainer.appendChild(button);
+  menuContainer.appendChild(buttonContainer);
+
+  button.addEventListener('click', function (evt) {
+    var className = button.getAttribute('data-time') || 'night';
+    var newClass = 'day';
+    if ( className === 'day' ) {
+      newClass = 'night';
+    }
+
+    localStorage.bodyClass = newClass;
+    //~ evt.target.innerHTML = evt.target.innerHTML.replace(newClass, className);
+    evt.target.setAttribute('data-time', newClass);
+    document.body.className = document.body.className.replace(className, newClass);
+  });
 })();
