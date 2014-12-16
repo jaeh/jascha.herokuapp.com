@@ -1,3 +1,5 @@
+'use strict';
+
 //first tell the body that we have javascript support as early as possible
 document.body.className = document.body.className.replace('nojs', 'js');
 
@@ -7,8 +9,6 @@ document.body.className = document.body.className.replace('nojs', 'js');
  * 
 */
 (function() {
-  'use strict';
-
   var pathName = document.location.pathname;
   var timeOfDay = localStorage.bodyClass || 'day';
   var imageGallery = document.getElementById('image-gallery');
@@ -278,7 +278,6 @@ function getMenuContainer() {
  * rendering and adds event listeners for the fullscreen button
 */
 (function () {
-  'use strict';
   var menuContainer = getMenuContainer()
     , elem = document.body
   ;
@@ -337,10 +336,7 @@ function getMenuContainer() {
  * rendering and adds event listeners for the day/night button
 */
 (function addDayNightUi () {
-  'use strict';
-
   var menuContainer = getMenuContainer();
-  //day/night button
   var menuUl = document.getElementById('menu').getElementsByTagName('ul')[0];
   var buttonContainer = document.createElement('li');
   buttonContainer.id = 'daynight-container';
@@ -366,4 +362,20 @@ function getMenuContainer() {
     evt.target.setAttribute('data-time', newClass);
     document.body.className = document.body.className.replace(className, newClass);
   });
+})();
+
+
+(function () {
+  var menuUl = document.getElementById('menu').getElementsByTagName('ul')[0];
+  var buttonContainer = document.createElement('li');
+  buttonContainer.id = 'leftright-container';
+  var buttonRight = document.createElement('a');
+  var buttonLeft = document.createElement('a');
+  buttonRight.id = 'btn-right';
+  buttonRight.classList.add('icon-caret-right');
+  buttonLeft.id = 'btn-left';
+  buttonLeft.classList.add('icon-caret-left');
+  buttonContainer.appendChild(buttonLeft);
+  buttonContainer.appendChild(buttonRight);
+  menuUl.appendChild(buttonContainer);
 })();
