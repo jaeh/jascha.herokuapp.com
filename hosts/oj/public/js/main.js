@@ -3,6 +3,46 @@
 //first tell the body that we have javascript support as early as possible
 document.body.className = document.body.className.replace('nojs', 'js');
 
+function getImages() {
+  var gallery = document.getElementById('gallery-container');
+  var images = gallery.getElementsByTagName('img');
+  return images;
+}
+
+
+function getHashId() {
+   return parseInt(location.hash.replace('#image-', '') );
+}
+
+function countImages() {
+  var images = getImages();
+  return images.length;
+}
+
+function loadNextImage() {
+  var hashId = getHashId();
+  var imageCount = countImages();
+  console.log('hashId', hashId, 'imageCount', imageCount);
+  
+  if ( hashId < imageCount ) {
+    hashId += 1;
+  } else {
+    hashId = 1;
+  }
+  location.hash = '#image-' + hashId;
+  console.log('location.hash', location.hash);
+}
+
+function loadPreviousImage() {
+  var hashId = getHashId();
+  if ( hashId > 1 ) {
+    hashId -= 1;
+  } else {
+    hashId = countImages();
+  }
+  location.hash = '#image-' + hashId;
+}
+
 /*
  * renders the image gallery,
  * adds image gallery navigation by clicking left/right half of the image
@@ -88,10 +128,6 @@ document.body.className = document.body.className.replace('nojs', 'js');
     });
   }
 
-  function getHashId() {
-     return parseInt(location.hash.replace('#image-', '') );
-  }
-
   function loadFirstImage() {
     var hashId = getHashId();
     var images = getImagesFromNoscript();
@@ -164,30 +200,6 @@ document.body.className = document.body.className.replace('nojs', 'js');
     }
   }
 
-  function loadNextImage() {
-    var hashId = getHashId();
-    var imageCount = countImages();
-    console.log('hashId', hashId, 'imageCount', imageCount);
-    
-    if ( hashId < imageCount ) {
-      hashId += 1;
-    } else {
-      hashId = 1;
-    }
-    location.hash = '#image-' + hashId;
-    console.log('location.hash', location.hash);
-  }
-
-  function loadPreviousImage() {
-    var hashId = getHashId();
-    if ( hashId > 1 ) {
-      hashId -= 1;
-    } else {
-      hashId = countImages();
-    }
-    location.hash = '#image-' + hashId;
-  }
-
   function imageClick(evt) {
     var offsetLeft = evt.target.offsetLeft;
     var x = evt.x || evt.screenX;
@@ -197,17 +209,6 @@ document.body.className = document.body.className.replace('nojs', 'js');
     } else {
       loadPreviousImage();
     }
-}
-
-  function getImages() {
-    var gallery = document.getElementById('gallery-container');
-    var images = gallery.getElementsByTagName('img');
-    return images;
-  }
-
-  function countImages() {
-    var images = getImages();
-    return images.length;
   }
 
   function resizeImages() {
@@ -228,9 +229,7 @@ document.body.className = document.body.className.replace('nojs', 'js');
   function resizeImage(image) {
     if ( image.style ) {
       var height = window.innerHeight;
-      image.style.maxHeight = (height - 150) + 'px';
-      image.style.width = 'auto';
-      image.style.maxWidth = '100%';
+      image.style.maxHeight = (height - 160) + 'px';
     }
   }
 
@@ -242,7 +241,7 @@ document.body.className = document.body.className.replace('nojs', 'js');
   document.addEventListener('mozfullscreenchange', fullscreenChange);
   document.addEventListener('fullscreenchange', fullscreenChange);
   document.addEventListener('MSFullscreenChange', fullscreenChange);
-  
+
   function fullscreenChange() {
     var d = document
       , isFullscreen = d.fullscreen
@@ -378,4 +377,7 @@ function getMenuContainer() {
   buttonContainer.appendChild(buttonLeft);
   buttonContainer.appendChild(buttonRight);
   menuUl.appendChild(buttonContainer);
+  
+  buttonLeft.addEventListener('click', loadPreviousImage);
+  buttonRight.addEventListener('click', loadNextImage);
 })();

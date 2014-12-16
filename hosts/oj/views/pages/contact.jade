@@ -10,6 +10,6 @@ block content
 
       if errors && errors.msg
         label.error(for='msg') Please input a message:
-      textarea#msg(name='msg' placeHolder='your message' value=msg)
+      textarea#msg(name='msg' placeHolder='your message')= msg
 
       input(type='submit' value='submit')
