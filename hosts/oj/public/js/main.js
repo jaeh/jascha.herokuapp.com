@@ -407,12 +407,31 @@ function getMenuContainer() {
 
 
 (function phoneSwipe() {
-
   document.addEventListener('touchstart', function touchstart(evt) {
-    console.log('touchstart', evt);
+    console.log('touchstart', evt.screenX);
+    var touchStartPosition = {
+        x: evt.screenX
+      , y: evt.screenY
+    };
+
+    document.addEventListener('touchend', function touchend(evt) {
+      console.log('touchend', evt.screenY);
+      var touchEndPosition = { 
+          x: evt.screenX 
+        , y: evt.screenY
+      };
+
+      if ( touchEndPosition.x > touchStartPosition.x + 50 ) {
+        loadNextImage();
+      } else if ( touchEndPosition.x < touchStartPosition.x - 50 ) {
+        loadPreviousImage();
+      } else if ( touchEndPosition.y > touchStartPosition.y + 50 ) {
+        loadNextImage();
+      } else if ( touchEndPosition.y < touchStartPosition.y - 50 ) {
+        loadPreviousImage();
+      }
+    });
   });
 
-  document.addEventListener('touchend', function touchend(evt) {
-    console.log('touchend', evt);
-  });
+  
 });
