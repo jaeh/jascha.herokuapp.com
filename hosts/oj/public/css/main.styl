@@ -5,10 +5,10 @@
 bg-image(image)
   background: url('/img/' + image)
 
-transition(transition)
-    -webkit-transition transition
-    -moz-transition transition
-    transition transition
+transition()
+  -webkit-transition arguments
+  -moz-transition arguments
+  transition arguments
 
 body_font_color = #111
 body_bg_color = #fefefe
@@ -43,6 +43,7 @@ body
   text-align center
   transition(background-color 0.5s);
   width 100%
+  position absolute
 
   &.night
     background-color body_bg_color_night
@@ -53,6 +54,13 @@ body
 
       &:hover
         color a_color_hover_night
+
+  &.fullscreen
+    header.main
+      margin -1.5em 0 0
+  header.main.animated
+    transition(margin 1s)
+
 
 body.nojs
   overflow scroll
@@ -78,8 +86,8 @@ body.nojs
 
 header.main
   left 0
-  padding 3% 0 3%
   width 100%
+  margin 3% 0
 
   nav#menu
     width 100%

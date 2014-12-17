@@ -43,12 +43,53 @@ function loadPreviousImage() {
   location.hash = '#image-' + hashId;
 }
 
+function realFullscreen() {
+  var d = document
+    , elem = d.body
+    , isFullscreen = d.fullscreen
+                  || d.mozFullScreen
+                  || d.webkitIsFullScreen
+                  || d.msFullscreenElement
+                  || false
+  ;
+
+  document.cancelFullscreen = d.cancelFullScreen
+                           || d.exitFullscreen
+                           || d.mozCancelFullScreen
+                           || d.webkitCancelFullScreen
+                           || d.msExitFullscreen
+                           || false
+  ;
+
+  if ( ! isFullscreen ) {
+    elem.requestFullscreen();
+    button.classList.add('icon-compress');
+    button.classList.remove('icon-expand');
+  } else {
+    document.cancelFullscreen();
+    button.classList.add('icon-expand');
+    button.classList.remove('icon-compress');
+  }
+}
+
+function inPageFullscreen() {
+  var cL = document.body.classList
+    , cN = document.body.className
+  ;
+
+  if ( cN.indexOf('fullscreen') >= 0 ) {
+    cL.remove('fullscreen');
+  } else {
+    cL.add('fullscreen');
+  }
+}
+
 /*
  * renders the image gallery,
  * adds image gallery navigation by clicking left/right half of the image
  * 
 */
-(function() {
+(function addImageGallery() {
   var pathName = document.location.pathname;
   var timeOfDay = localStorage.bodyClass || 'day';
   var imageGallery = document.getElementById('image-gallery');
@@ -59,9 +100,6 @@ function loadPreviousImage() {
     document.location.hash = document.location.hash || '#image-1';
 
     var imgEle = loadFirstImage();
-    //~ if ( imgEle && typeof imgEle.className === 'string' ) {
-      //~ imgEle.className = 'displayed';
-    //~ }
     resizeImages();
   }
 
@@ -276,10 +314,12 @@ function getMenuContainer() {
 /*
  * rendering and adds event listeners for the fullscreen button
 */
-(function () {
+(function addFullscreenUi() {
   var menuContainer = getMenuContainer()
-    , elem = document.body
+    , elem          = document.body
+    , header        = document.querySelectorAll('header.main')[0]
   ;
+
   elem.requestFullscreen = elem.requestFullscreen 
                         || elem.msRequestFullscreen
                         || elem.mozRequestFullScreen
@@ -287,49 +327,23 @@ function getMenuContainer() {
                         || false
   ;
 
-  //only load if requestFullscreen exists
-  if ( typeof elem.requestFullscreen === 'function' ) {
-    var menuUl = document.getElementById('menu').getElementsByTagName('ul')[0];
-    var buttonContainer = document.createElement('li');
-    buttonContainer.id = 'fullscreen-container';
-    var button = document.createElement('a');
-    button.id = 'fullscreen';
-    button.classList.add('icon-expand');
-    //~ button.innerHTML = 'fullscreen';
-    button.addEventListener('click', function () {
-      var d = document
-        , isFullscreen = d.fullscreen
-                      || d.mozFullScreen
-                      || d.webkitIsFullScreen
-                      || d.msFullscreenElement
-                      || false
-      ;
+  var menuUl = document.getElementById('menu').getElementsByTagName('ul')[0];
+  var buttonContainer = document.createElement('li');
+  var button = document.createElement('a');
+  buttonContainer.id = 'fullscreen-container';
+  buttonContainer.appendChild(button);
+  
+  header.classList.add('animated');
 
-      document.cancelFullscreen = d.cancelFullScreen
-                               || d.exitFullscreen
-                               || d.mozCancelFullScreen
-                               || d.webkitCancelFullScreen
-                               || d.msExitFullscreen
-                               || false
-      ;
+  button.id = 'fullscreen';
+  button.classList.add('icon-expand');
+  //~ button.innerHTML = 'fullscreen';
+  button.addEventListener('click', inPageFullscreen);
 
-      if ( ! isFullscreen ) {
-        elem.requestFullscreen();
-        button.classList.add('icon-compress');
-        button.classList.remove('icon-expand');
-      } else {
-        document.cancelFullscreen();
-        button.classList.add('icon-expand');
-        button.classList.remove('icon-compress');
-      }
-    
-    });
-
-    buttonContainer.appendChild(button);
-    menuContainer.appendChild(buttonContainer);
-    //~ menuUl.appendChild(buttonContainer);
-  }
+  menuContainer.appendChild(buttonContainer);
+  //~ menuUl.appendChild(buttonContainer);
 })();
+
 
 /*
  * rendering and adds event listeners for the day/night button
@@ -364,7 +378,7 @@ function getMenuContainer() {
 })();
 
 
-(function () {
+(function addImageGallery() {
   var menuUl = document.getElementById('menu').getElementsByTagName('ul')[0];
   var buttonContainer = document.createElement('li');
   buttonContainer.id = 'leftright-container';
@@ -380,4 +394,25 @@ function getMenuContainer() {
   
   buttonLeft.addEventListener('click', loadPreviousImage);
   buttonRight.addEventListener('click', loadNextImage);
+  
+  document.addEventListener('keyup', function (evt) {
+    var kC = evt.keyCode;
+    if ( kC === 37 || kC === 38 ) {
+      loadPreviousImage();
+    } else if ( kC === 39 || kC === 40 ) {
+      loadNextImage();
+    }
+  });
 })();
+
+
+(function phoneSwipe() {
+
+  document.addEventListener('touchstart', function touchstart(evt) {
+    console.log('touchstart', evt);
+  });
+
+  document.addEventListener('touchend', function touchend(evt) {
+    console.log('touchend', evt);
+  });
+});
