@@ -20,17 +20,6 @@ body_bg_color_night = #111
 a_color_night = #aaa
 a_color_hover_night = #fefefe
 
-@font-face
-  font-family 'icomoon'
-  src url('/font/icomoon.eot')
-  src url('/font/icomoon.eot') format('embedded-opentype'),
-    url('/font/icomoon.woff') format('woff'),
-    url('/font/icomoon.ttf') format('truetype'),
-    url('/font/icomoon.svg') format('svg')
-  font-weight normal
-  font-style normal
-
-
 html, body
   height 100%
   display block
@@ -60,7 +49,6 @@ body
       margin -1.5em 0 0
   header.main.animated
     transition(margin 1s)
-
 
 body.nojs
   overflow scroll
@@ -131,7 +119,7 @@ noscript#image-gallery, div#gallery
     max-width 100%
     width auto
 
-#menu-container
+#extra-menu-container
   position absolute
   left 1em
   top 1em
@@ -216,3 +204,32 @@ body header.main nav#menu li#leftright-container
     float left
   #btn-right
     float right
+    
+
+@media (max-width: 400px)
+  body
+    font-size 23px
+  
+    &.fullscreen
+      header.main
+        margin -6em 0 0
+  
+    header.main
+      nav#menu
+        ul
+          li
+            display block
+            margin 0.5em 0
+            
+            &#leftright-container
+              margin 0
+              font-size 1.2em
+
+    #extra-menu-container
+      font-size 1.2em
+      left .5em
+      position fixed
+      top .5em
+
+      li
+        display block

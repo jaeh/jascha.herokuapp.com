@@ -300,10 +300,10 @@ function inPageFullscreen() {
 })();
 
 function getMenuContainer() {
-  var menuContainer = document.getElementById('menu-container');
+  var menuContainer = document.getElementById('extra-menu-container');
   if ( ! menuContainer ) {
     menuContainer = document.createElement('ul');
-    menuContainer.id = 'menu-container';
+    menuContainer.id = 'extra-menu-container';
     document.body.appendChild(menuContainer);
   }
 
@@ -408,29 +408,37 @@ function getMenuContainer() {
 
 (function phoneSwipe() {
   document.addEventListener('touchstart', function touchstart(evt) {
-    console.log('touchstart', evt.screenX);
-    var touchStartPosition = {
-        x: evt.screenX
-      , y: evt.screenY
-    };
+    var touches = evt.originalEvent.touches;
 
-    document.addEventListener('touchend', function touchend(evt) {
-      console.log('touchend', evt.screenY);
-      var touchEndPosition = { 
-          x: evt.screenX 
-        , y: evt.screenY
+    if (touches && touches.length) {
+      var touchStartPosition = {
+          x: touches[0].pageX
+        , y: touches[0].pageY
       };
+      evt.preventDefault();
+      document.addEventListener('touchmove', function touchmove(evt) {
+        var touchEndPosition = { 
+            x: touches[0].pageX 
+          , y: touches[0].pageY
+        };
 
-      if ( touchEndPosition.x > touchStartPosition.x + 50 ) {
-        loadNextImage();
-      } else if ( touchEndPosition.x < touchStartPosition.x - 50 ) {
-        loadPreviousImage();
-      } else if ( touchEndPosition.y > touchStartPosition.y + 50 ) {
-        loadNextImage();
-      } else if ( touchEndPosition.y < touchStartPosition.y - 50 ) {
-        loadPreviousImage();
-      }
-    });
+        if ( touchEndPosition.x > touchStartPosition.x + 50 ) {
+          loadNextImage();
+        } else if ( touchEndPosition.x < touchStartPosition.x - 50 ) {
+          loadPreviousImage();
+        } else if ( touchEndPosition.y > touchStartPosition.y + 50 ) {
+          loadNextImage();
+        } else if ( touchEndPosition.y < touchStartPosition.y - 50 ) {
+          loadPreviousImage();
+        }
+        
+        evt.preventDefault();
+        document.addEventListener('touchend', function touchend(evt) {
+          evt.target.removeEventListener('touchmove');
+          evt.preventDefault();
+        } );
+      });
+    }
   });
 
   
