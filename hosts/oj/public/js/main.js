@@ -267,7 +267,7 @@ function inPageFullscreen() {
   function resizeImage(image) {
     if ( image.style ) {
       var height = window.innerHeight;
-      image.style.maxHeight = (height - 160) + 'px';
+      image.style.maxHeight = (height - 180) + 'px';
     }
   }
 
