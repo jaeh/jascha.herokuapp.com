@@ -164,7 +164,7 @@ function filterHosts(file, cb) {
   var filePath = path.join(cwd, 'hosts', file);
   console.log('filterHosts file = ' + file);
   fs.stat(filePath, function (err, stats) {
-    if ( err ) { return log(err, 'error'); }
+    if ( err ) { return log.error(err); }
     if ( stats.isDirectory() ) {
       fs.exists(path.join(filePath, 'package.json'), function (exists) {
         if ( exists ) { 

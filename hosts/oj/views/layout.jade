@@ -1,0 +1,32 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    title Oliver Jiszda Photography
+    meta(name='viewport' content='width=device-width')
+    link(rel='stylesheet', href='/css/main.css')
+
+    meta(property='og:title' content='Oliver Jiszda Photography')
+    meta(name='description' property='og:description' content='Oliver Jiszda Photography')
+
+  block body
+    body.nojs
+      header.main
+        block header
+          nav#menu
+            ul
+              li
+                a(href='/') oliver jiszda
+              li
+                a(href='/work') work
+              li
+                a(href='/about') about
+              li
+                a(href='/contact') contact
+
+      #content
+        block content
+          div empty body content
+
+      block scripts
+        script(src='/js/main.js')

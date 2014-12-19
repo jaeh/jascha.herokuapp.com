@@ -17,7 +17,7 @@ module.exports = function() {
     ]
     , function (err, results) {
       log('host updated.');
-      if (err) { log(err, 'error'); }
+      if (err) { log.error(err); }
     }
   );
 }

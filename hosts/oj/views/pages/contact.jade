@@ -1,0 +1,15 @@
+extends ../layout
+
+block content
+  h2 Contact
+  form(method='post' action='')
+    fieldset
+      if errors && errors.from
+        label.error(for='from') Please input your email:
+      input#from(name='from' placeHolder='your email' value=from)
+
+      if errors && errors.msg
+        label.error(for='msg') Please input a message:
+      textarea#msg(name='msg' placeHolder='your message')= msg
+
+      input(type='submit' value='submit')

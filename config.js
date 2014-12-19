@@ -28,8 +28,18 @@ module.exports = {
       }
     }
   }
-, heroku: {
-    remote: "jascha"
-  , staging: "jascha-staging"
+  , heroku: {
+      remote: "jascha"
+    , staging: "jascha-staging"
+  }
+  , mail: 'jascha@jaeh.at'
+  , mailTransport: {
+      host: 'localhost'
+    , port: 465
+    , secure: true
+    , auth: {
+        user: 'username'
+      , pass: 'password'
+    }
   }
 }
