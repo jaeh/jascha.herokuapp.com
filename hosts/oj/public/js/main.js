@@ -99,8 +99,9 @@ function inPageFullscreen() {
   if ( imageGallery && imageGallery.innerHTML ) {
     document.location.hash = document.location.hash || '#image-1';
 
-    var imgEle = loadFirstImage();
-    resizeImages();
+    if ( loadFirstImage() ) {
+      resizeImages();
+    }
   }
 
 
@@ -169,11 +170,15 @@ function inPageFullscreen() {
   function loadFirstImage() {
     var hashId = getHashId();
     var images = getImagesFromNoscript();
-    var galleryEle = addGallery();
     var image = images[hashId-1];
-    delete images[hashId-1];
-    
-    return addImageEle(image, true, images);
+
+    if ( image ) {
+      var galleryEle = addGallery();
+      delete images[hashId-1];
+      return addImageEle(image, true, images);
+    } else {
+      return false;
+    }
   }
 
   function addImageEle(image, addEvent, images) {
@@ -251,7 +256,7 @@ function inPageFullscreen() {
 
   function resizeImages() {
     var imageGallery = document.getElementById('image-gallery');
-    
+    //make sure the gallery exists and has content
     if (imageGallery && imageGallery.innerHTML ) {
       var gallery = addGallery();
       var images = gallery.getElementsByTagName('img');
@@ -274,7 +279,7 @@ function inPageFullscreen() {
   window.addEventListener('resize', function () {
     resizeImages();
   });
-  
+
   document.addEventListener('webkitfullscreenchange', fullscreenChange);
   document.addEventListener('mozfullscreenchange', fullscreenChange);
   document.addEventListener('fullscreenchange', fullscreenChange);
@@ -306,14 +311,12 @@ function getMenuContainer() {
     menuContainer.id = 'extra-menu-container';
     document.body.appendChild(menuContainer);
   }
-
   return menuContainer;
 }
 
-
 /*
  * rendering and adds event listeners for the fullscreen button
-*/
+ */
 (function addFullscreenUi() {
   var menuContainer = getMenuContainer()
     , elem          = document.body
@@ -391,10 +394,10 @@ function getMenuContainer() {
   buttonContainer.appendChild(buttonLeft);
   buttonContainer.appendChild(buttonRight);
   menuUl.appendChild(buttonContainer);
-  
+
   buttonLeft.addEventListener('click', loadPreviousImage);
   buttonRight.addEventListener('click', loadNextImage);
-  
+
   document.addEventListener('keyup', function (evt) {
     var kC = evt.keyCode;
     if ( kC === 37 || kC === 38 ) {
@@ -405,7 +408,9 @@ function getMenuContainer() {
   });
 })();
 
-
+/*
+ * phone swipe functionality
+ */
 (function phoneSwipe() {
   document.addEventListener('touchstart', function touchstart(evt) {
     var touches = evt.originalEvent.touches;
@@ -431,7 +436,7 @@ function getMenuContainer() {
         } else if ( touchEndPosition.y < touchStartPosition.y - 50 ) {
           loadPreviousImage();
         }
-        
+
         evt.preventDefault();
         document.addEventListener('touchend', function touchend(evt) {
           evt.target.removeEventListener('touchmove');
@@ -440,6 +445,4 @@ function getMenuContainer() {
       });
     }
   });
-
-  
 });
