@@ -1,6 +1,8 @@
 'use strict';
 
 var express = require('express')
+  , fs      = require('fs')
+  , jade    = require('jade')
   , router  = express.Router()
   , path    = require('path')
   , mail    = require('magic-mail')
@@ -8,6 +10,32 @@ var express = require('express')
   , cwd     = process.cwd()
   , config  = require( path.join(cwd, 'config') )
 ;
+/*
+router.get('*', function (req, res, next) {
+  if ( ! req.query || ! req.query.js ) {
+    return next();
+  }
+  
+  log('req.query', req.query);
+  if ( req.query.js ) {
+    var fileName = (req.path.replace('/', '') || 'index') + '.jade';
+    log('fileName', fileName);
+    fs.readFile(path.join(__dirname, '..', 'views', 'pages', fileName), function (err, content) {
+      if ( err ) {
+        log(err);
+      }
+      content = content.toString();
+      if ( content.indexOf('block content') >= 0 ) {
+        content = content.split('block content')[1];
+        log('fs.readFile', err, content.toString());
+        content = jade.compile(content);
+        res.send(content);
+      }
+    } );
+
+    //next();
+  }
+} );*/
 
 router.post('/contact', function (req, res, next) {
   var locals = locals || {};

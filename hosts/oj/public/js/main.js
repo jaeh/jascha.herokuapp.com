@@ -3,12 +3,14 @@
 //first tell the body that we have javascript support as early as possible
 document.body.className = document.body.className.replace('nojs', 'js');
 
+addImageGallery();
+
 function getImages() {
-  var gallery = document.getElementById('gallery-container');
-  var images = gallery.getElementsByTagName('img');
+  var gallery = document.getElementById('gallery-container')
+    , images = gallery.getElementsByTagName('img')
+  ;
   return images;
 }
-
 
 function getHashId() {
    return parseInt(location.hash.replace('#image-', '') );
@@ -20,8 +22,9 @@ function countImages() {
 }
 
 function loadNextImage() {
-  var hashId = getHashId();
-  var imageCount = countImages();
+  var hashId = getHashId()
+    , imageCount = countImages()
+  ;
   console.log('hashId', hashId, 'imageCount', imageCount);
   
   if ( hashId < imageCount ) {
@@ -35,6 +38,7 @@ function loadNextImage() {
 
 function loadPreviousImage() {
   var hashId = getHashId();
+
   if ( hashId > 1 ) {
     hashId -= 1;
   } else {
@@ -89,10 +93,11 @@ function inPageFullscreen() {
  * adds image gallery navigation by clicking left/right half of the image
  * 
 */
-(function addImageGallery() {
-  var pathName = document.location.pathname;
-  var timeOfDay = localStorage.bodyClass || 'day';
-  var imageGallery = document.getElementById('image-gallery');
+function addImageGallery() {
+  var pathName = document.location.pathname
+    , timeOfDay = localStorage.bodyClass || 'day'
+    , imageGallery = document.getElementById('image-gallery')
+  ;
 
   document.body.classList.add(timeOfDay);
 
@@ -110,9 +115,10 @@ function inPageFullscreen() {
       return document.getElementById('gallery-container');
     }
 
-    var contentEle = document.getElementById('content');
-    var galleryEle = document.createElement('div');
-    var galleryContainerEle = document.createElement('ul');
+    var contentEle = document.getElementById('content')
+      , galleryEle = document.createElement('div')
+      , galleryContainerEle = document.createElement('ul')
+    ;
 
     galleryContainerEle.id = 'gallery-container';
 
@@ -124,39 +130,40 @@ function inPageFullscreen() {
   }
 
   function getImagesFromNoscript() {
-    var imageGalleryEle = document.getElementById('image-gallery');
-    var imageHTML = imageGalleryEle.innerHTML;
-    var imageTags = imageHTML.split('&lt;img');
+    var imageGalleryEle = document.getElementById('image-gallery')
+      , imageHTML = imageGalleryEle.innerHTML
+      , imageTags = imageHTML.split('&lt;img')
+      , imgs = []
+    ;
     if ( imageHTML.indexOf('<img') >= 0 ) {
       imageTags = imageHTML.split('<img');
     }
-    console.log('imageTags', imageTags);
+    //~ console.log('imageTags', imageTags);
 
-    var imgs = [];
     for (var i = 0; i < imageTags.length; i++ ) {
       var img = parseImgTag(imageTags[i]);
       if ( img ) {
         imgs.push( img );
       }
     }
-    console.log('imgs', imgs);
+    //~ console.log('imgs', imgs);
     return imgs;
   }
 
   function parseImgTag(img) {
-    var src = img.split('src="')[1] || '';
-    var title = img.split('title="')[1] || '';
-    var id = img.split('id="')[1] || '';
+    var src = img.split('src="')[1] || ''
+      , title = img.split('title="')[1] || ''
+      , id = img.split('id="')[1] || ''
+    ;
 
-    console.log('img', img);
+    //~ console.log('img', img);
 
     if ( src ) {
-      var image = {
+      return {
           id    : id.split('"')[0]
         , src: src.split('"')[0]
         , title : title.split('"')[0]
       };
-      return image;
     }
     return false;
   }
@@ -168,9 +175,10 @@ function inPageFullscreen() {
   }
 
   function loadFirstImage() {
-    var hashId = getHashId();
-    var images = getImagesFromNoscript();
-    var image = images[hashId-1];
+    var hashId = getHashId()
+      , images = getImagesFromNoscript()
+      , image = images[hashId-1]
+    ;
 
     if ( image ) {
       var galleryEle = addGallery();
@@ -182,9 +190,10 @@ function inPageFullscreen() {
   }
 
   function addImageEle(image, addEvent, images) {
-    var imgContainer = document.createElement('li');
-    var imgEle = document.createElement('img');
-    var imgTitle = document.createElement('h2');
+    var imgContainer = document.createElement('li')
+      , imgEle = document.createElement('img')
+      , imgTitle = document.createElement('h2')
+    ;
 
     if ( ! image ) {
       return false;
@@ -199,9 +208,10 @@ function inPageFullscreen() {
     imgContainer.appendChild(imgEle);
     imgContainer.appendChild(imgTitle);
 
-    var gallery = addGallery();
-    var hashId = getHashId();
-    var imgId = parseInt( imgEle.id.replace('image-', '') );
+    var gallery = addGallery()
+      , hashId = getHashId()
+      , imgId = parseInt( imgEle.id.replace('image-', '') )
+    ;
 
     if ( imgId < hashId ) {
       var imgParent = document.getElementById('image-' + hashId).parentNode;
@@ -228,8 +238,9 @@ function inPageFullscreen() {
   }
 
   function showImage(id) {
-    var image = document.getElementById('image-' + id);
-    var shownImages = document.getElementsByClassName('displayed');
+    var image = document.getElementById('image-' + id)
+      , shownImages = document.getElementsByClassName('displayed')
+    ;
 
     if (image) {
       for ( var k in shownImages ) {
@@ -276,9 +287,7 @@ function inPageFullscreen() {
     }
   }
 
-  window.addEventListener('resize', function () {
-    resizeImages();
-  });
+  window.addEventListener( 'resize', resizeImages );
 
   document.addEventListener('webkitfullscreenchange', fullscreenChange);
   document.addEventListener('mozfullscreenchange', fullscreenChange);
@@ -301,8 +310,8 @@ function inPageFullscreen() {
     }
   }
 
-  window.addEventListener('hashchange', hashChange, false);  
-})();
+  window.addEventListener('hashchange', hashChange, false);
+}
 
 function getMenuContainer() {
   var menuContainer = document.getElementById('extra-menu-container');
@@ -352,12 +361,13 @@ function getMenuContainer() {
  * rendering and adds event listeners for the day/night button
 */
 (function addDayNightUi () {
-  var menuContainer = getMenuContainer();
-  var menuUl = document.getElementById('menu').getElementsByTagName('ul')[0];
-  var buttonContainer = document.createElement('li');
+  var menuContainer = getMenuContainer()
+    , menuUl = document.getElementById('menu').getElementsByTagName('ul')[0]
+    , buttonContainer = document.createElement('li')
+    , button = document.createElement('a')
+    , currentTimeOfDay = localStorage.bodyClass || 'day'
+  ;
   buttonContainer.id = 'daynight-container';
-  var button = document.createElement('a');
-  var currentTimeOfDay = localStorage.bodyClass || 'day';
   button.setAttribute('data-time', currentTimeOfDay);
 
   button.classList.add(currentTimeOfDay === 'day' ? 'day' : 'night');
@@ -367,8 +377,10 @@ function getMenuContainer() {
   menuContainer.appendChild(buttonContainer);
 
   button.addEventListener('click', function (evt) {
-    var className = button.getAttribute('data-time') || 'night';
-    var newClass = 'day';
+    var className = button.getAttribute('data-time') || 'night'
+      , newClass = 'day'
+    ;
+
     if ( className === 'day' ) {
       newClass = 'night';
     }
@@ -381,12 +393,13 @@ function getMenuContainer() {
 })();
 
 
-(function addImageGallery() {
-  var menuUl = document.getElementById('menu').getElementsByTagName('ul')[0];
-  var buttonContainer = document.createElement('li');
+(function addImageGalleryControls() {
+  var menuUl = document.getElementById('menu').getElementsByTagName('ul')[0]
+    , buttonContainer = document.createElement('li')
+    , buttonRight = document.createElement('a')
+    , buttonLeft = document.createElement('a')
+  ;
   buttonContainer.id = 'leftright-container';
-  var buttonRight = document.createElement('a');
-  var buttonLeft = document.createElement('a');
   buttonRight.id = 'btn-right';
   buttonRight.classList.add('icon-caret-right');
   buttonLeft.id = 'btn-left';
@@ -446,3 +459,66 @@ function getMenuContainer() {
     }
   });
 });
+
+
+function httpGet(url) {
+    var xmlHttp = null;
+
+    xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", url, false );
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+
+/*
+ * add navigation events and html replacement
+ */
+(function navigation() {
+  var menu      = document.querySelector('header.main')
+    , menuItems = menu.getElementsByTagName('a')
+    , contents  = []
+  ;
+
+  for ( var key in menuItems ) {
+    if ( menuItems.hasOwnProperty(key) 
+      && typeof menuItems[key].getAttribute === 'function' ) {
+      var menuItem = menuItems[key]
+        , link     = menuItem.getAttribute('href')
+      ;
+
+      //~ contents[link] = httpGet(link + '?js=1');
+
+      menuItem.addEventListener('click', clickedNavigation);
+    }
+  }
+
+  function clickedNavigation(evt) {
+    evt.preventDefault();
+
+    var link = evt.target.getAttribute('href')
+      , contentEle = document.getElementById('content')
+    ;
+
+    console.log('link to load', link);
+    
+    contents[link] = httpGet(link + '?js=1');
+    //~ console.log('contents[link]',contents[link]);
+    if ( contents[link] ) {
+      var tempEle = document.createElement('div');
+      tempEle.innerHTML = contents[link];
+      console.log('tempEle', tempEle);
+      for ( var key in tempEle ) {
+        console.log('key', key);
+      }
+      var contentEle2 = tempEle.querySelector('#content');
+      if ( contentEle2 && contentEle2.innerHTML ) {
+        contentEle.innerHTML = contentEle2.innerHTML;
+        if ( contentEle.innerHTML.indexOf('noscript id="image-gallery"') >= 0 ) {
+          console.log('noscript image gallery detected');
+          addImageGallery();
+        }
+      }
+    }
+  }
+
+})();

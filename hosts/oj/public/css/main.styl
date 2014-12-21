@@ -30,9 +30,12 @@ body
   margin 0 auto
   overflow hidden
   text-align center
-  transition(background-color 0.5s);
   width 100%
   position absolute
+  transition(background-color 0.5s)
+
+  #content
+    transition(color 0.5s)
 
   &.night
     background-color body_bg_color_night
@@ -44,11 +47,19 @@ body
       &:hover
         color a_color_hover_night
 
-  &.fullscreen
+  &.js
+    &.fullscreen
+      header.main
+        margin -1.5em 0 0
+
     header.main
-      margin -1.5em 0 0
-  header.main.animated
-    transition(margin 1s)
+      transition(margin 0.5s)
+
+form
+  input, 
+  textarea
+    transition(0.5s)
+
 
 body.nojs
   overflow scroll
