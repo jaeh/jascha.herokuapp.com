@@ -16,8 +16,7 @@
 
 body_color = #fefefe
 body_bg_color = #010101
-a_color = #999
-a_color_hover = #fff
+a_color = #F79F3F
 
 body
   font-family Ubuntu, monospace
@@ -29,12 +28,24 @@ body
   background-color body_bg_color
   color body_color
 
+  &.white
+    background-color body_color
+    color body_bg_color
+    
+    a
+      color darken(a_color, 20%)
+      &:hover
+        color lighten(a_color, 30%)
+
+h1, h2, h3, h4, h5
+  color a_color
+
 a
   color a_color
   text-decoration none
 
   &:hover
-    color a_color_hover
+    color lighten(a_color, 30%)
 
 h1, h2, h3, h4, h5
   margin 1em 0 0

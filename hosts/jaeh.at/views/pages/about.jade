@@ -11,7 +11,7 @@ block content
     p
       | What you see running here is a bunch of jade templates, hosted on 
       a(href='https://heroku.com') heroku
-      | , content deliveried through 
+      | , content delivered through 
       a(href='https://cloudflare.com') cloudflare
       | .
 
@@ -22,7 +22,7 @@ block content
       p
         | A host is a collection of templates, designed to be served together.
         | One host is a completely independent express application and it can do
-        | anything express can do.
+        | anything express can do, but most of the time with reduced boilerplate.
         
       p
         | a host consists of 5 lines of javascript, because i like to be verbose:
@@ -43,7 +43,12 @@ block content
 
       p
         | The rest of the magic is completely up to you,
-        | you can add any kind of express functionality in your hosts.
+        | you can add any kind of express functionality in your hosts 
+        | and there are some helpers for connect middlewares.
+        | If you use magic-express and find a middleware that is not supported
+        | just file an 
+        a(href="https://github.com/express-magic/express-magic/issues") issue
+        |  on github and we will add it.
 
 
     article
@@ -81,7 +86,7 @@ block content
       p
         | The 
         a(href='https://github.com/express-magic/magic-server') magic-server
-        | repository helps you kickstart your development.
+        |  repository helps you kickstart your development.
         | Just add your custom content and deploy :)
     
     article
