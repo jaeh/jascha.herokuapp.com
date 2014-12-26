@@ -16,19 +16,36 @@ block content
     
     p
       | What you see running here is a bunch of jade templates, hosted on 
-      a(href='https://heroku.com' target='_blank') heroku
-      | , content deliveried through 
-      a(href='https://cloudflare.com' target='_blank') cloudflare
+      a(href='https://heroku.com' target='heroku') heroku
+      | , content delivered through 
+      a(href='https://cloudflare.com' target='cloudflare') cloudflare
       | .
+
+     article
+      header
+        h4 Magic
+      
+      p
+        | in essence, Magic is an express app mounter.
+
+      p
+        | it is designed not to be used.
+      p
+        | it's goal is to magically reduce all the tedious boilerplate
+        | that usually has to be written to get an express app running. 
+      p
+        | All you need to enable Magic in your app is a main.js file:
+        pre
+          code.
+            require('express-magic')();
 
     article
       header
         h4 Hosts:
-
       p
         | A host is a collection of templates, designed to be served together.
         | One host is a completely independent express application and it can do
-        | anything express can do.
+        | anything express can do, but most of the time with reduced boilerplate.
         
       p
         | a host consists of 5 lines of javascript, because i like to be verbose:
@@ -46,7 +63,6 @@ block content
         pre
           code.
             module.exports = require('express')();
-
       p
         | The rest of the magic is completely up to you,
         | you can add any kind of express functionality in your hosts.
@@ -54,33 +70,35 @@ block content
         pre
           code.
             -- app root dir
-            host.js //the file described above
-            views //a normal express view directory, fill as you wish
-              pages //this dir keeps the top level pages
+            host.js       //the file described above
+            config.js     //the express-magic config file
+            views         //the top level view directory
+              layout.jade //the main layout file
+              pages       //this dir keeps the top level pages
                 index.jade
-                404.jade //default magic 404 page template.
-            public //a normal express public directory
+                404.jade  //default magic 404 page template.
+            public        //a regular express.static public directory
       p
-        | There is a lot of functionality unlockable, 
-        | soon there will be a verbose example application
-        | that showcases all of the settings.
+        | You can also look at the 
+        a(href='https://github.com/express-magic/magic-localhost' target='_blank') magic-localhost
+        |  repository. This is the express example application ready for express-magic
 
     article
       header
-        h4 Magic
-      
+        h4 Express Middlewares
       p
-        | in essence, Magic is an app mounter.
-
-      p
-        | it is designed not to be used. 
-        | it's goal is to magically take all those tedious tasks away from you
-        | that usually have to be done to get an express app running. 
-      p
-        | All you need to access Magic in your app is a main.js file:
+        | There are some helpers for connect middlewares.
         pre
           code.
-            require('express-magic')();
+            var H = require('express')();
+            H.enable('bodyParser');
+            H.enable('cookieParser');
+            //there are more, documentation will follow.
+
+        | If you use magic-express and find a middleware that is not supported
+        | just file an 
+        a(href='https://github.com/express-magic/express-magic/issues') issue
+        |  on github and we will add it.
 
     article
       header

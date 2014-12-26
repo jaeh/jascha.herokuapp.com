@@ -9,9 +9,7 @@
     "express": "^4.9.8",
     "express-magic": "git+https://github.com/express-magic/express-magic#master",
     "jade": "^1.7.0",
-    "magic-log": "git://github.com/express-magic/magic-log",
-    "magic-wizard": "git+https://github.com/express-magic/magic-wizard#master",
-    "mongoose": "^3.8.19"
+    "magic-wizard": "git+https://github.com/express-magic/magic-wizard#master"
   },
   "repository": {
     "type": "git",

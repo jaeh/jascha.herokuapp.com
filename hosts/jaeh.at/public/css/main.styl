@@ -1,26 +1,51 @@
 @import reset
 
-font_color_main = #ccc
+@font-face
+  font-family 'Ubuntu'
+  font-style normal
+  font-weight 400
+  src local('Ubuntu'), url(/font/ubuntu-monospace-ext.woff2) format('woff2')
+  unicode-range U+0100-024F, U+1E00-1EFF, U+20A0-20AB, U+20AD-20CF, U+2C60-2C7F, U+A720-A7FF
+
+@font-face
+  font-family 'Ubuntu'
+  font-style normal
+  font-weight 400
+  src local('Ubuntu'), url(/font/ubuntu-monospace.woff2) format('woff2')
+  unicode-range U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215, U+E0FF, U+EFFD, U+F000
+
+body_color = #fefefe
 body_bg_color = #010101
-a_color = #fff
-a_color_hover = #ddd
+a_color = #F79F3F
 
 body
-  background-color body_bg_color
-  color font_color_main
-  font-family monospace
+  font-family Ubuntu, monospace
   font-size 20px
   line-height 1.3em
   max-width 700px
   margin 0 auto
   padding 0.5em 1em
+  background-color body_bg_color
+  color body_color
+
+  &.white
+    background-color body_color
+    color body_bg_color
+    
+    a
+      color darken(a_color, 20%)
+      &:hover
+        color lighten(a_color, 30%)
+
+h1, h2, h3, h4, h5
+  color a_color
 
 a
   color a_color
   text-decoration none
 
   &:hover
-    color a_color_hover
+    color lighten(a_color, 30%)
 
 h1, h2, h3, h4, h5
   margin 1em 0 0
@@ -93,16 +118,17 @@ div.list
 
     .content
       float left
-      
       img
         float left
         margin 0 3% 0 0
-        max-height 400px
-        max-width 200px
+        max-width 60px
 
     div[itemprop=description]
       display inline
       font-size .8em
+
+.disclaimer
+  font-size .7em
 
 div.social
   li
@@ -142,6 +168,53 @@ div.networks
 
 footer.main
   margin 1em 0
+
+
+pre 
+  border-left 11px solid lighten(body_bg_color, 20%)
+  margin 1.7em 0 1.7em 0.3em
+  overflow auto
+  padding 0.1em 0.5em 0.3em 0.7em
+  width 93%
+  background-color body_color
+
+  code 
+    font-size 0.8em
+    line-height 1.6em
+
+body.white pre 
+  border-color lighten(body_bg_color, 20%)
+  color lighten(body_bg_color, 40%)
+
+code, samp, kbd
+  color lighten(body_bg_color, 20%)
+  font-family "Courier New", Courier, monospace, sans-serif
+  text-align left
+
+.dirview
+  ul
+    ul
+      margin 0 1em
+
+
+.testimonial
+  background-color #ff9d1c
+  border-radius 9px
+  box-shadow 2px 3px 10px #999
+  color #fff
+  font-size 0.8em
+  margin 1em auto
+  padding 0.5em
+  text-align center
+  width 80%
+
+  p
+    font-size 0.7em
+    font-style italic
+    text-align right
+    line-height 1.3em
+    margin 0
+    
 
 @media (max-width: 800px)
   body
@@ -208,45 +281,3 @@ footer.main
       display inherit
       width 65%
 
-
-code, samp, kbd
-  color #bbb
-  font-family "Courier New", Courier, monospace, sans-serif
-  text-align left
-
-pre code 
-  font-size 0.8em
-  line-height 1.6em
-  
-pre 
-  border-left 11px solid #ccc
-  margin 1.7em 0 1.7em 0.3em
-  overflow auto
-  padding 0.1em 0.5em 0.3em 0.7em
-  width 93%
-
-
-.dirview
-  ul
-    ul
-      margin 0 1em
-
-
-.testimonial
-  background-color #ff9d1c
-  border-radius 9px
-  box-shadow 2px 3px 10px #999
-  color #fff
-  font-size 0.8em
-  margin 1em auto
-  padding 0.5em
-  text-align center
-  width 80%
-
-  p
-    font-size 0.7em
-    font-style italic
-    text-align right
-    line-height 1.3em
-    margin 0
-    
