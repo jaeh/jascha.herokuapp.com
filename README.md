@@ -1,4 +1,6 @@
 jascha.herokuapp.com
 ====================
 
-app running on jascha.herokuapp.com (which redirects to jaeh.at)
+this repository is now obsolete.
+
+The current version of this repository is hosted on [https://github.com/jaeh/jaeh.at](jaeh/jaeh.at)
